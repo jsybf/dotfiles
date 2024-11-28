@@ -211,6 +211,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- [[ my custom command ]]
+vim.api.nvim_set_hl(0, 'VertSplit', { bg = 'NONE', fg = '#141414' })
+
+require 'basic-conf'
 require 'command.command'
 require 'keymap'
 require 'terminal-conf'
