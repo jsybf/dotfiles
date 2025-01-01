@@ -219,6 +219,7 @@ require 'basic-conf'
 require 'command.command'
 require 'keymap'
 require 'terminal-conf'
+require 'command.terminal-command'
 -- require 'telescope-conf'
 
 -- [[ Install `lazy.nvim` plugin manager ]]
