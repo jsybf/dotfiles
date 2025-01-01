@@ -21,6 +21,13 @@ local function run_cmd(opts)
   vim.api.nvim_buf_set_lines(0, 0, -1, false, output)
 end
 
+local function copy_buffer_file_path_to_mac_clipboard(opts)
+  -- https://neovim.io/doc/user/builtin.html
+  local file_path = vim.fn.expand '%:p'
+  vim.fn.system('pbcopy', file_path)
+  print('Copied to clipboard: ' .. file_path)
+end
+
 vim.api.nvim_create_user_command('Wipehidden', function()
   local bufinfos = vim.fn.getbufinfo { buflisted = true }
   vim.tbl_map(function(bufinfo)
@@ -33,3 +40,4 @@ end, { desc = 'Wipeout all buffers not shown in a window' })
 
 vim.api.nvim_create_user_command('Cwd', set_cwd_to_buffer_dir, { nargs = 0 })
 vim.api.nvim_create_user_command('Rc', run_cmd, { nargs = 1 })
+vim.api.nvim_create_user_command('Cp', copy_buffer_file_path_to_mac_clipboard, { nargs = 0 })
