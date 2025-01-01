@@ -1,17 +1,16 @@
 # vim:fileencoding=utf-8:foldmethod=marker
 
-# font
-font_family      family='Iosveka Gitp' style='Medium Semi-Condensed' 
-bold_font        auto
-italic_font      auto
-bold_italic_font auto
+#font
+# font_family      family='Iosevka Gitp' style='Medium Condensed'
+# bold_font        auto
+# italic_font      auto
+# bold_italic_font auto
 
 modify_font cell_height 90%
+modify_font baseline 1 
 font_size 20.0
 
-# bell
-enable_audio_bell yes
-
+# cursor
 cursor_shape block
 shell_integration no-cursor
 
@@ -24,6 +23,10 @@ tab_separator "     ┇"
 scrollback_pager nvim -u NONE -R -M -c 'lua require("kitty_page")(INPUT_LINE_NUMBER, CURSOR_LINE, CURSOR_COLUMN)' -  
 
 # window 
+
+# tab bar
+tab_bar_edge top
+tab_bar_margin_height 0.0 0.0
 
 map f1 goto_layout tall
 #: Fonts {{{
@@ -2669,6 +2672,15 @@ map f1 goto_layout tall
 
 
 # BEGIN_KITTY_THEME
-# 3024 Night
+# Xcodedark
 include current-theme.conf
 # END_KITTY_THEME
+
+
+
+# BEGIN_KITTY_FONTS
+font_family      family='Iosevka Gitp' style='Medium Condensed'
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+# END_KITTY_FONTS
