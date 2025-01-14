@@ -166,6 +166,8 @@ return {
       -- bash
       bashls = require 'lsp.bash-conf', -- bash lsp
       shfmt = {}, -- bash formatter
+      shellcheck = {},
+
       -- clangd = {},
       -- gopls = {},
       -- rust_analyzer = {},
