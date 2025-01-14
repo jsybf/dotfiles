@@ -163,6 +163,9 @@ return {
       pyright = require 'lsp.python-conf',
       yamlls = require 'lsp.yaml-conf',
       lua_ls = require 'lsp.lua-conf',
+      -- bash
+      bashls = require 'lsp.bash-conf', -- bash lsp
+      shfmt = {}, -- bash formatter
       -- clangd = {},
       -- gopls = {},
       -- rust_analyzer = {},
