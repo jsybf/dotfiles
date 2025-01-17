@@ -18,6 +18,8 @@ return {
           'unused-label',
           'unused-local',
           'unused-varag',
+          'missing-parameters',
+          'missing-fields',
         },
       },
     },
