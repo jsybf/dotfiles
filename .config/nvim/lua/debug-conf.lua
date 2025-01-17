@@ -18,6 +18,21 @@ local function python_dap()
   }
 end
 
+local function nlua_dap()
+  require('dap').adapters.nlua = {
+    type = 'server',
+    host = '127.0.0.1',
+    port = 8086,
+  }
+  require('dap').configurations.lua = {
+    {
+      type = 'nlua',
+      request = 'attach',
+      name = 'Attach to running Neovim instance',
+    },
+  }
+end
+
 return {
   'mfussenegger/nvim-dap',
   dependencies = {
@@ -32,6 +47,9 @@ return {
   keys = function(_, keys)
     local dap = require 'dap'
     local dapui = require 'dapui'
+    vim.api.nvim_create_user_command('OsvStart', function()
+      require('osv').launch { port = 8086 }
+    end, { nargs = 0 })
     return {
       -- Basic debugging keymaps, feel free to change to your liking!
       { '<F5>', dap.continue, desc = 'Debug: Start/Continue' },
@@ -89,26 +107,8 @@ return {
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
-    dap.configurations.lua = {
-      {
-        type = 'nlua',
-        request = 'attach',
-        name = 'Attach to running Neovim instance',
-      },
-    }
-
+    -- load dap settings
     python_dap()
-
-    -- dap.adapters.nlua = function(callback, config)
-    --   callback { type = 'server', host = config.host or '127.0.0.1', port = config.port or 8086 }
-    -- end
-    -- Install golang specific config
-    -- require('dap-go').setup {
-    --   delve = {
-    --     -- On Windows delve must be run attached or it crashes.
-    --     -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
-    --     detached = vim.fn.has 'win32' == 0,
-    --   },
-    -- }
+    nlua_dap()
   end,
 }
