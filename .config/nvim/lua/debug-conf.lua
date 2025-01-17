@@ -1,3 +1,23 @@
+local function python_dap()
+  require('dap').adapters.python = {
+    type = 'executable',
+    command = '/Users/gitp/.local/pipx/venvs/debugpy/bin/python',
+    args = { '-m', 'debugpy.adapter' },
+    options = {
+      source_filetype = 'python',
+    },
+  }
+  require('dap').configurations.python = {
+    {
+      type = 'python',
+      request = 'launch',
+      name = 'Launch file',
+      program = '${file}',
+      pythonPath = '/Users/gitp/.pyenv/versions/3.13.0/bin/python3',
+    },
+  }
+end
+
 return {
   'mfussenegger/nvim-dap',
   dependencies = {
@@ -77,9 +97,11 @@ return {
       },
     }
 
-    dap.adapters.nlua = function(callback, config)
-      callback { type = 'server', host = config.host or '127.0.0.1', port = config.port or 8086 }
-    end
+    python_dap()
+
+    -- dap.adapters.nlua = function(callback, config)
+    --   callback { type = 'server', host = config.host or '127.0.0.1', port = config.port or 8086 }
+    -- end
     -- Install golang specific config
     -- require('dap-go').setup {
     --   delve = {
