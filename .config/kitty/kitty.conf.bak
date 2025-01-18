@@ -6,7 +6,6 @@
 # italic_font      auto
 # bold_italic_font auto
 font_size 20.0
-modify_font cell_width 102%
 
 # cursor
 cursor_shape block
@@ -2679,7 +2678,7 @@ include current-theme.conf
 
 
 # BEGIN_KITTY_FONTS
-font_family      family='Gitp Iosevka 1' style=Condensed
+font_family      family='Gitp Iosevka 1' style=Semi-Condensed
 bold_font        auto
 italic_font      auto
 bold_italic_font auto

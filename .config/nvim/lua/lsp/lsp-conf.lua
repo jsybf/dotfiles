@@ -19,6 +19,7 @@ local function lsp_key_maps(event)
   map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
   map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+  map('<C-p>', vim.lsp.buf.signature_help, 'lsp signature_help', 'i') -- jet brains style key-mapping
 
   local client = vim.lsp.get_client_by_id(event.data.client_id)
   if client == nil then
@@ -55,18 +56,15 @@ local function ensure_installed(servers, capabilities)
 
   -- add additional tools
   local ensure_installed = vim.tbl_keys(servers or {})
-  vim.list_extend(ensure_installed, {
-    'stylua', -- Used to format Lua code
-  })
+  vim.list_extend(ensure_installed, { 'stylua' })
+
   require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
   require('mason-lspconfig').setup {
     handlers = {
+      -- apply config from servers table
       function(server_name)
         local server = servers[server_name] or {}
-        -- This handles overriding only values explicitly passed
-        -- by the server configuration above. Useful when disabling
-        -- certain features of an LSP (for example, turning off formatting for ts_ls)
         server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
         require('lspconfig')[server_name].setup(server)
       end,
@@ -87,17 +85,11 @@ return {
   -- Main LSP Configuration
   'neovim/nvim-lspconfig',
   dependencies = {
-    -- Automatically install LSPs and related tools to stdpath for Neovim
-    { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+    { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants. Automatically install LSPs and related tools to stdpath for Neovim
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-
-    -- Useful status updates for LSP.
-    -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-    { 'j-hui/fidget.nvim', opts = {} },
-
-    -- Allows extra capabilities provided by nvim-cmp
-    'hrsh7th/cmp-nvim-lsp',
+    { 'j-hui/fidget.nvim', opts = {} }, -- Useful status updates for LSP.
+    'hrsh7th/cmp-nvim-lsp', -- Allows extra capabilities provided by nvim-cmp
   },
 
   config = function()
@@ -115,7 +107,6 @@ return {
       shellcheck = {}, -- bash linter
     }
     ensure_installed(servers, capabilities)
-
     -- when lsp is attached
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
