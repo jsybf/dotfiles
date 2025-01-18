@@ -222,12 +222,6 @@ require 'terminal-conf'
 require 'command.terminal-command'
 require 'command.common'
 require 'telescope-conf'
-function test1()
-  require('logging').info 'this is test log msg1'
-  require('logging').info 'this is test log msg2'
-  require('logging').info 'this is test log msg3'
-end
-test1()
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info

@@ -2,6 +2,7 @@
 -- 누를 때마다 그 이전 최근 커맨드를 붙여넣음
 -- 3 초가 지나면 다시 최근 커맨드를 가르킨다.
 
+local logger = require 'logging'
 local hist_idx = 0
 local hist = {}
 local reset_timer = nil
@@ -107,13 +108,13 @@ local function execute_selected_in_terminal()
   end
 
   if not term_buf then
-    print "can't find terminal buffer in current window"
+    logger.error "can't find terminal buffer in current window"
     return
   end
   -- send and execute command
   local term_job_id = vim.bo[term_buf].channel
   vim.fn.chansend(term_job_id, selected_text .. '\n') --'\r\n')
-  require('logging').info('executed in terminal: ' .. selected_text)
+  logger.info('executed in terminal: ' .. selected_text)
 end
 
 vim.keymap.set('v', '<leader>r', execute_selected_in_terminal, {})
