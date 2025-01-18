@@ -33,6 +33,20 @@ return {
         },
       },
       file_ignore_patterns = { '.git/' },
+      defaults = {
+        path_display = { 'smart' },
+        layout_config = {
+          horizontal = {
+            height = 0.95,
+            preview_cutoff = 120,
+            prompt_position = 'bottom',
+            width = 0.95,
+          },
+        },
+      },
+      pickers = {
+        lsp_dynamic_workspace_symbols = { fname_width = 0.5, symbol_width = 0.4, symbol_type_width = 0.1 },
+      },
     }
 
     -- Enable Telescope extensions if they are installed
@@ -52,6 +66,14 @@ return {
     vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
     -- vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
     -- vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+
+    local function grep_in_lazy_plugins()
+      builtin.live_grep {
+        cwd = '/Users/gitp/.local/share/nvim/lazy',
+        glob_pattern = '*.lua',
+      }
+    end
+    vim.api.nvim_create_user_command('GrepLazy', grep_in_lazy_plugins, { nargs = 0 })
 
     local function find_in_bookmark_dir()
       local bookmark_name = vim.fn.input 'bookmark: '
