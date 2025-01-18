@@ -113,6 +113,7 @@ local function execute_selected_in_terminal()
   -- send and execute command
   local term_job_id = vim.bo[term_buf].channel
   vim.fn.chansend(term_job_id, selected_text .. '\n') --'\r\n')
+  require('logging').info('executed in terminal: ' .. selected_text)
 end
 
 vim.keymap.set('v', '<leader>r', execute_selected_in_terminal, {})
