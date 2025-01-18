@@ -1,3 +1,6 @@
+-- local function lsp_workspace_symbol_keymap()
+--
+-- end
 return {
   'nvim-telescope/telescope.nvim',
   event = 'VimEnter',
@@ -31,6 +34,7 @@ return {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
         },
+        -- fzf = {},
       },
       file_ignore_patterns = { '.git/' },
       defaults = {
@@ -45,7 +49,7 @@ return {
         },
       },
       pickers = {
-        lsp_dynamic_workspace_symbols = { fname_width = 0.5, symbol_width = 0.4, symbol_type_width = 0.1 },
+        lsp_dynamic_workspace_symbols = { fname_width = 0.4, symbol_width = 0.45, symbol_type_width = 0.15 },
       },
     }
 
@@ -64,6 +68,8 @@ return {
     vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
     vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
     vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+    vim.keymap.set('n', '<leader>sl', builtin.lsp_dynamic_workspace_symbols, { desc = '[S]earch [L]sp workspace symbolsl ' })
+
     -- vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
     -- vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
