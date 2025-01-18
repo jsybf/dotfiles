@@ -9,4 +9,8 @@ local function search_symbol(args)
   vim.lsp.buf.workspace_symbol(query)
 end
 
+-- local function hover()
+--
+-- end
+
 vim.api.nvim_create_user_command('Lssw', search_symbol, { nargs = '?', desc = 'lsp search symbols in workspace' })

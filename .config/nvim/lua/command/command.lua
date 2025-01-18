@@ -1,3 +1,4 @@
+local loggger = require 'logging'
 local common = require 'command.common'
 
 -- set directory of current buffer to cwd
@@ -17,6 +18,25 @@ local function run_cmd(opts)
 
   -- print result of shell command to buffer
   vim.api.nvim_buf_set_lines(output_buf, 0, -1, false, output)
+
+  common.vertical_split('s', output_buf)
+end
+
+local function run_vim_cmd(args)
+  local cmd = ':' .. args['args']
+
+  local success, cmd_output = pcall(vim.api.nvim_exec2, cmd, { output = true })
+  if success then
+    loggger.info('executed vim command: ' .. cmd)
+  else
+    loggger.error('failed to executed vim command: ' .. cmd)
+    return
+  end
+
+  local cmd_output_lines = vim.split(cmd_output.output, '\n', { trimempty = true })
+
+  local output_buf = common.create_scretch_buf()
+  vim.api.nvim_buf_set_lines(output_buf, 0, -1, false, cmd_output_lines)
 
   common.vertical_split('s', output_buf)
 end
@@ -45,5 +65,6 @@ end, { desc = 'Wipeout all buffers not shown in a window' })
 
 vim.api.nvim_create_user_command('Cwd', set_cwd_to_buffer_dir, { nargs = 0 })
 vim.api.nvim_create_user_command('Rc', run_cmd, { nargs = 1 })
+vim.api.nvim_create_user_command('Rvc', run_vim_cmd, { nargs = '*' })
 vim.api.nvim_create_user_command('Cp', copy_buffer_file_path_to_mac_clipboard, { nargs = 0 })
 vim.api.nvim_create_user_command('Vnew', vsplit_scretch_buf, { nargs = 0 })
