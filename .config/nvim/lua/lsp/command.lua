@@ -1,10 +1,10 @@
-local logger = require 'logging'
+local logger = require('logging'):new(nil)
 local function search_symbol(args)
   local query = args['fargs'][1] or ''
 
   local workspace_dirs = vim.lsp.buf.list_workspace_folders()
-  logger.info('searched workspace_dir: ' .. vim.inspect(workspace_dirs))
-  logger.info('searching_query: ' .. query)
+  logger:info('searched workspace_dir: ' .. vim.inspect(workspace_dirs))
+  logger:info('searching_query: ' .. query)
 
   vim.lsp.buf.workspace_symbol(query)
 end

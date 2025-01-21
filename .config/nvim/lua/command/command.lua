@@ -1,4 +1,4 @@
-local loggger = require 'logging'
+local logger = require('logging'):new(nil)
 local common = require 'command.common'
 
 -- set directory of current buffer to cwd
@@ -27,9 +27,9 @@ local function run_vim_cmd(args)
 
   local success, cmd_output = pcall(vim.api.nvim_exec2, cmd, { output = true })
   if success then
-    loggger.info('executed vim command: ' .. cmd)
+    logger:info('executed vim command: ' .. cmd)
   else
-    loggger.error('failed to executed vim command: ' .. cmd)
+    logger:error('failed to executed vim command: ' .. cmd)
     return
   end
 

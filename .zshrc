@@ -158,3 +158,5 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # Created by `pipx` on 2024-11-08 00:20:16
 export PATH="$PATH:/Users/gitp/.local/bin"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export NVIM_GITP_LOG_PATH=/Users/gitp/dev/nvim.log

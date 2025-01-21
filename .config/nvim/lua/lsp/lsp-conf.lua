@@ -1,4 +1,4 @@
-local logger = require 'logging'
+local logger = require('logging'):new(nil)
 
 local function lsp_key_maps(event)
   -- helper function
@@ -23,7 +23,7 @@ local function lsp_key_maps(event)
 
   local client = vim.lsp.get_client_by_id(event.data.client_id)
   if client == nil then
-    logger.error 'client must not be null'
+    logger:error 'client must not be null'
     return
   end
 
@@ -113,8 +113,8 @@ return {
       callback = function(event)
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         assert(client)
-        logger.info('lsp attached name:' .. client.name)
-        logger.info('lsp attached capabilities:' .. vim.inspect(client.server_capabilities))
+        logger:info('lsp attached name:' .. client.name)
+        logger:info('lsp attached capabilities:' .. vim.inspect(client.server_capabilities))
 
         lsp_key_maps(event) -- set lsp keymap
       end,
