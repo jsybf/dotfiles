@@ -71,10 +71,10 @@ return {
       },
       performance = { max_view_entries = 10 },
       completion = { completeopt = 'menu,menuone,noinsert' },
-      mapping = {
-        ['<Tab>'] = cmp.mapping(tab_select_next_mapping, { 'i' }),
-        ['<C-Space>'] = cmp.mapping.complete {},
-      },
+      -- mapping = {
+      --   ['<Tab>'] = cmp.mapping(tab_select_next_mapping, { 'i' }),
+      --   ['<C-Space>'] = cmp.mapping.complete {},
+      -- },
 
       sources = {
         {

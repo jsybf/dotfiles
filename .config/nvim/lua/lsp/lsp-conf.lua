@@ -20,6 +20,7 @@ local function lsp_key_maps(event)
   map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
   map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
   map('<C-p>', vim.lsp.buf.signature_help, 'lsp signature_help', 'i') -- jet brains style key-mapping
+  map('<C-Space>', vim.lsp.buf.hover, 'lsp signature_help', { 'n', 'i' }) -- jet brains style key-mapping
 
   local client = vim.lsp.get_client_by_id(event.data.client_id)
   if client == nil then
