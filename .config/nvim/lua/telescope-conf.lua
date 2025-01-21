@@ -30,24 +30,15 @@ return {
     -- See `:help telescope` and `:help telescope.setup()`
     -- See `:help telescope.builtin`
     require('telescope').setup {
-      extensions = {
-        ['ui-select'] = {
-          require('telescope.themes').get_dropdown(),
-        },
-        -- fzf = {},
-      },
-      file_ignore_patterns = { '.git/' },
       defaults = {
+        sorting_strategy = 'descending',
         path_display = { 'smart' },
         layout_config = {
-          horizontal = {
-            height = 0.95,
-            preview_cutoff = 120,
-            prompt_position = 'bottom',
-            width = 0.95,
-          },
+          horizontal = { height = 0.95, preview_cutoff = 120, prompt_position = 'bottom', width = 0.95 },
         },
       },
+      extensions = { ['ui-select'] = { require('telescope.themes').get_dropdown() } },
+      file_ignore_patterns = { '.git/' },
       pickers = {
         lsp_dynamic_workspace_symbols = { fname_width = 0.4, symbol_width = 0.45, symbol_type_width = 0.15 },
       },
