@@ -1,0 +1,19 @@
+# remove macos window titlebar
+frame = "buttonless"
+title-hidden = true
+
+# render config
+idle = true
+vsync = false
+
+# detach from terminal. just so you know neovide's ppid is 1
+fork = true
+
+[font]
+size = 16
+[[font.normal]]
+family = "Gitp Iosevka 1 Condensed"
+[[font.bold]]
+family = "Gitp Iosevka 1 Condensed"
+style = "Medium"
+
