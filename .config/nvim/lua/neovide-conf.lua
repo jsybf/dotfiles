@@ -16,3 +16,11 @@ end
 vim.keymap.set('n', '<C-=>', function() change_scale_factor(1.1) end)
 -- stylua: ignore
 vim.keymap.set('n', '<C-->', function() change_scale_factor(1/1.1) end)
+
+-- enable cmd+c and cmd+v in neovide
+-- https://github.com/neovide/neovide/issues/1263
+vim.g.neovide_input_use_logo = 1
+vim.keymap.set('', '<D-v>', '+p<CR>', { noremap = true, silent = true })
+vim.keymap.set('!', '<D-v>', '<C-R>+', { noremap = true, silent = true })
+vim.keymap.set('t', '<D-v>', '<C-R>+', { noremap = true, silent = true })
+vim.keymap.set('v', '<D-v>', '<C-R>+', { noremap = true, silent = true })
