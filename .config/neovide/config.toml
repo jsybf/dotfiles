@@ -11,9 +11,17 @@ fork = true
 
 [font]
 size = 16
+
 [[font.normal]]
 family = "Gitp Iosevka 1 Condensed"
+style = "Condensed"
 [[font.bold]]
+family = "Gitp Iosevka 1"
+style = "Medium"
+[[font.italic]]
 family = "Gitp Iosevka 1 Condensed"
+style = "Condensed"
+[[font.bold_italic]]
+family = "Gitp Iosevka 1"
 style = "Medium"
 
