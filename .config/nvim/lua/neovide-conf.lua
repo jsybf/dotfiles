@@ -22,5 +22,6 @@ vim.keymap.set('n', '<C-->', function() change_scale_factor(1/1.1) end)
 vim.g.neovide_input_use_logo = 1
 vim.keymap.set('', '<D-v>', '+p<CR>', { noremap = true, silent = true })
 vim.keymap.set('!', '<D-v>', '<C-R>+', { noremap = true, silent = true })
-vim.keymap.set('t', '<D-v>', '<C-R>+', { noremap = true, silent = true })
 vim.keymap.set('v', '<D-v>', '<C-R>+', { noremap = true, silent = true })
+-- stylua: ignore
+vim.keymap.set('t', '<D-v>', function() local clipboard = vim.fn.getreg('+') vim.api.nvim_feedkeys(clipboard, 't', true) end, { noremap = true, silent = true })
