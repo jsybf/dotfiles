@@ -1,0 +1,52 @@
+# font
+# font-family = D2Coding ligature
+# font-family = Maple Mono NF
+
+font-family = Victor Mono
+font-style = SemiBold
+font-style-bold = Bold
+font-style-italic = SemiBold Oblique
+font-style-bold-italic = Bold Oblieque
+font-synthetic-style = false
+font-size = 18
+adjust-cell-height = -33%
+
+
+window-padding-balance = true
+window-step-resize = true
+resize-overlay = never
+
+# theme
+# them = Flexoki Light
+# theme = Seoulbones Light
+# theme = GitHub Light Default
+# theme = Claude Light
+# theme = Wez
+# theme = IR Black
+# theme = Seoulbones Light
+# theme = Kanagawa Dragon
+# theme = Atom One Dark
+# theme = onedarkpro_onedark_dark
+# theme = 12-bit Rainbow
+# theme = Xcode Dark hc
+theme = jellybeans
+# theme=Subliminal
+
+# windowappearance
+# gtk-titlebar-style = tabs
+# window-decoration = none
+
+# clipboard
+clipboard-paste-protection = false
+
+# copy
+copy-on-select = true
+
+# pre hook?
+command = /usr/bin/fish
+
+keybind = alt+F1=toggle_window_decorations
+
+# background-opacity = 0.95
+# background-opacity-cells = true
+# freetype-load-flags = hinting, no-light, autohint, no-force-autohint, no-monochrome
